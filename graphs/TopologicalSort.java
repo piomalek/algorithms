@@ -21,7 +21,64 @@ public class TopologicalSort {
      * @return list of vertices sorted in topological order
      */
     public static String[] topologicalSortDfs(int n, String[][] edges) {
-        return null;
+        Map<String, Set<String>> graph = new HashMap<>();
+
+        // stores the state of the vertes. 0 - unvisited, 1 - visited, 2 - processing
+        Map<String, Integer> vertexColor = new HashMap<>();
+
+        // stack will contain topologically sorted vertices
+        Deque<String> stack = new LinkedList<>();
+
+        //build graph
+        for(String[] edge : edges) {
+            String from = edge[1];
+            String to = edge[0];
+            graph.put(from, graph.computeIfAbsent(from, l -> new HashSet<String>())).add(to);
+            vertexColor.put(from, 0);
+            vertexColor.put(to, 0);
+        }
+
+        // for each vertex run dfs if vertex in unvisited,
+        // if visited we have a cycle -> error,
+        // if vertex was processed before we ignore that
+        for(String vertex: vertexColor.keySet()) {
+            if (vertexColor.get(vertex) == 0) {
+                tsDfs(graph, vertex, vertexColor, stack);
+            } else if (vertexColor.get(vertex) == 1) {
+                throw new RuntimeException("cycle detected");
+            }
+        }
+
+        String[] result = new String[stack.size()];
+        int idx = 0;
+        while(!stack.isEmpty()) {
+            result[idx++] = stack.removeFirst();
+        }
+
+        return result;
+    }
+
+    private static void tsDfs(Map<String, Set<String>> graph, String vertex, Map<String, Integer> vertexColor, Deque<String> stack)  {
+        if(!graph.containsKey(vertex)) {
+            vertexColor.put(vertex, 2);
+            stack.addFirst(vertex);
+            return;
+        }
+
+        vertexColor.put(vertex, 1);
+
+        for(String next : graph.get(vertex)) {
+            if (vertexColor.get(next) == 0) {
+                tsDfs(graph, next, vertexColor, stack);
+            } else if (vertexColor.get(next) == 1) {
+                throw new RuntimeException("cycle detected");
+            }
+        }
+
+        vertexColor.put(vertex, 2);
+        stack.addFirst(vertex);
+
+        return;
     }
 
     /**
@@ -41,8 +98,6 @@ public class TopologicalSort {
      * @return list of vertices sorted in topological order
      */
     public static String[] topologicalSortInDegree(int n, String[][] edges) {
-        boolean[] visited = new boolean[n];
-
         Map<String, Set<String>> graph = new HashMap<>();
         Set<String> vertices = new HashSet<>();
         Map<String, Integer> incoming = new HashMap<>();
@@ -89,8 +144,11 @@ public class TopologicalSort {
     }
 
     public static void main(String[] args) {
-        String[] path = topologicalSort(4, new String[][]{{"b","a"},{"c","a"},{"d","b"},{"d","c"}});
-        System.out.println(Arrays.toString(path));
+        String[] path = topologicalSortInDegree(4, new String[][]{{"b","a"},{"c","a"},{"d","b"},{"d","c"}});
+        System.out.println("InDegree: " + Arrays.toString(path));
+
+        path = topologicalSortDfs(4, new String[][]{{"b","a"},{"c","a"},{"d","b"},{"d","c"}});
+        System.out.println("Dfs: " + Arrays.toString(path));
         return;
     }
 }
