@@ -9,9 +9,11 @@ public class Dijkstra {
      *
      * @param graph - graph[s][t] represents length of the edge from s to t. 0 represents no connection
      * @param source -> number of the starting node
-     * @return - distance matrix where distance[n] represents shortest path from source to n
+     * @param distance - array where distance[n] represents distance from source to node
+     * @param parent  - array where parent[n] represents predestor in the shortest path of node n
+     * @return
      */
-    private static int[] dijkstra(int[][] graph, int source, int[] distance, int[] parent) {
+    private static void dijkstra(int[][] graph, int source, int[] distance, int[] parent) {
         int N = graph.length;
         // elements -> {node, distance from source}
         PriorityQueue<int[]> priorityQueue = new PriorityQueue<>((a,b) -> a[1] - b[1]);
@@ -44,7 +46,7 @@ public class Dijkstra {
             }
         }
 
-        return distance;
+        return;
     }
 
     public static void main(String[] args) {
