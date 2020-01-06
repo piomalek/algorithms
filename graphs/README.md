@@ -33,3 +33,7 @@ and dfs using stack.
   - Once all the nodes have been processed, we will simply return the nodes as they are present in the stack from top to bottom.
 
 Coding problem with detailed description: [https://leetcode.com/problems/course-schedule-ii](https://leetcode.com/problems/course-schedule-ii)
+
+# Dijkstra
+Coding problem with detailed description: [https://leetcode.com/articles/the-maze-ii/](https://leetcode.com/articles/the-maze-ii/)
+
