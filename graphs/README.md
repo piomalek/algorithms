@@ -37,3 +37,7 @@ Coding problem with detailed description: [https://leetcode.com/problems/course-
 # Dijkstra
 Coding problem with detailed description: [https://leetcode.com/articles/the-maze-ii/](https://leetcode.com/articles/the-maze-ii/)
 
+# Euler Path
+
+Description: https://math.stackexchange.com/questions/1871065/euler-path-for-directed-graph
+Coding problem: https://leetcode.com/problems/reconstruct-itinerary/

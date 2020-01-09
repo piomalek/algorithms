@@ -17,11 +17,9 @@ public class Dijkstra {
         int N = graph.length;
         // elements -> {node, distance from source}
         PriorityQueue<int[]> priorityQueue = new PriorityQueue<>((a,b) -> a[1] - b[1]);
-
         priorityQueue.offer(new int[]{source, 0});
 
         while(!priorityQueue.isEmpty()) {
-
             int[] nodeArr = priorityQueue.poll();
             int node = nodeArr[0];
             int dist = nodeArr[1];
