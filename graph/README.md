@@ -34,7 +34,16 @@ and dfs using stack.
 
 Coding problem with detailed description: [https://leetcode.com/problems/course-schedule-ii](https://leetcode.com/problems/course-schedule-ii)
 
+# Union Find
+
+Allows to efficiently answer the question: are the two nodes connected
+
+Detailed description [https://www.cs.princeton.edu/~rs/AlgsDS07/01UnionFind.pdf](https://www.cs.princeton.edu/~rs/AlgsDS07/01UnionFind.pdf) 
+
 # Dijkstra
+
+Allows to find a shortest paths to all nodes from the source in a graph with **non-negative edge weights**
+
 Coding problem with detailed description: [https://leetcode.com/articles/the-maze-ii/](https://leetcode.com/articles/the-maze-ii/)
 
 # Euler Path
