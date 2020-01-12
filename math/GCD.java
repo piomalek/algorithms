@@ -2,7 +2,7 @@ public class GCD {
     /**
      * GCD - Greatest Common Divisor
      */
-    private static int gcd(int a, int b) {
+    public static int gcd(int a, int b) {
         while (b != 0) {
             int tmp = a % b;
             a = b;
